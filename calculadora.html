@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Jogos Scratch</title>
+
+<style>
+body{
+  margin:0;
+  background:#0f172a;
+  font-family:Arial;
+  color:white;
+  text-align:center;
+}
+
+h1{
+  background:#1e293b;
+  margin:0;
+  padding:15px;
+}
+
+button{
+  margin:5px;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  background:#334155;
+  color:white;
+  cursor:pointer;
+}
+
+iframe{
+  width:95%;
+  height:500px;
+  border:none;
+  border-radius:12px;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>calculadora;-) </h1>
+
+<button onclick="loadGame('https://scratch.mit.edu/projects/10128407/embed')">
+Minecraft
+</button>
+
+<button onclick="loadGame('https://scratch.mit.edu/projects/108566337/embed')">
+slither.io(jogo da cobra)
+</button>
+
+<button onclick="loadGame('https://scratch.mit.edu/projects/1298011112/embed')">
+chico gaviao adventure
+</button>
+
+<button onclick="loadGame('https://scratch.mit.edu/projects/970165530/embed')">
+  kits adventure
+</button>
+
+ <button onclick="loadGame('https://scratch.mit.edu/projects/954683598/embed')">
+  geometry dash
+</button>
+  
+<button onclick="loadGame('https://scratch.mit.edu/projects/389464290/embed')">
+gettin over it(escale a montanha com um balde)
+</button>
+
+<iframe id="gameFrame"></iframe>
+
+<script>
+function loadGame(url){
+  document.getElementById('gameFrame').src = url;
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modo Calculadora</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0f172a;
+  color:white;
+}
+
+/* área do site */
+#games{
+  padding:20px;
+  text-align:center;
+}
+
+/* botões touch */
+.touch-controls{
+  position:fixed;
+  bottom:10px;
+  right:10px;
+  display:flex;
+  gap:10px;
+}
+
+.touch-controls button{
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  background:#334155;
+  color:white;
+}
+
+/* calculadora */
+#calc{
+  display:none;
+  height:100vh;
+  background:#111;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.calculator{
+  background:#222;
+  padding:15px;
+  border-radius:15px;
+  width:260px;
+}
+
+.display{
+  width:100%;
+  height:50px;
+  margin-bottom:10px;
+  text-align:right;
+  font-size:20px;
+  padding:5px;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:5px;
+}
+
+.buttons button{
+  padding:15px;
+  font-size:16px;
+  border:none;
+  border-radius:8px;
+  background:#444;
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BOTÕES -->
+<div class="touch-controls">
+  <button onclick="abrirCalc()">Calculadora</button>
+  <button onclick="voltar()">Voltar</button>
+</div>
+
+<!-- CALCULADORA -->
+<div id="calc">
+  <div class="calculator">
+    <input id="display" class="display" readonly>
+
+    <div class="buttons">
+      <button onclick="add('7')">7</button>
+      <button onclick="add('8')">8</button>
+      <button onclick="add('9')">9</button>
+      <button onclick="add('/')">÷</button>
+
+      <button onclick="add('4')">4</button>
+      <button onclick="add('5')">5</button>
+      <button onclick="add('6')">6</button>
+      <button onclick="add('*')">×</button>
+
+      <button onclick="add('1')">1</button>
+      <button onclick="add('2')">2</button>
+      <button onclick="add('3')">3</button>
+      <button onclick="add('-')">−</button>
+
+      <button onclick="add('0')">0</button>
+      <button onclick="add('.')">.</button>
+      <button onclick="calc()">=</button>
+      <button onclick="add('+')">+</button>
+
+      <button onclick="clearDisplay()" style="grid-column: span 4; background:#b91c1c;">
+        C
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+function abrirCalc(){
+  document.getElementById("games").style.display = "none";
+  document.getElementById("calc").style.display = "flex";
+}
+
+function voltar(){
+  document.getElementById("games").style.display = "block";
+  document.getElementById("calc").style.display = "none";
+}
+
+function add(valor){
+  document.getElementById("display").value += valor;
+}
+
+function calc(){
+  try{
+    document.getElementById("display").value = eval(document.getElementById("display").value);
+  }catch{
+    alert("Erro");
+  }
+}
+
+function clearDisplay(){
+  document.getElementById("display").value = "";
+}
+
+// teclado
+document.addEventListener("keydown", function(e){
+  if(e.key.toLowerCase() === "c") abrirCalc();
+  if(e.key === "Escape") voltar();
+});
+</script>
+
+</body>
+</html>
